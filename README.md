@@ -1,22 +1,34 @@
 # Global Address Book
 
-## Pre-requisites
+## 1. Overview
 
-1. Pull latest `tutorial-addressbook-streams` code.
-
-
-## Demo Workflow
-
-**Assumptions:**
-
-- Initial Edge location for deploy is San Jose: https://demo1-us-west-1.demo.aws.macrometa.io/
+Demo to show a real-time adrressbook for three different regions.
 
 
-**Note:**
+## 2.Pre-requisites
 
-After deploy from one edge location, the function will be listable and invokable from all other regions where it has been replicated.
+Pull latest `tutorial-addressbook-streams` code.
 
-### A. Building and deploying GUI
+Update the regions of your federation in the Config file
+
+
+## 3. How to Run app locally.
+
+The federation url has to be provided in `Config.js` file. The user will then be asked to select one of the following regions in the GUI.
+
+```js
+const Config = {
+    global: "demo1.demo.aws.macrometa.io",
+    ashburn: "demo1-us-west-1.demo.aws.macrometa.io",
+    dublin: "demo1-eu-west-1.demo.aws.macrometa.io",
+    incheon: "demo1-ap-northeast-2.demo.aws.macrometa.io"
+}
+```
+
+Once in the root level of the GUI (same as `package.json`), execute `npm install` if the `node_modules` folder is not present and then `npm start` to run the server locally.
+Enter the tenant name, fabric name and credentials on the UI.
+
+## 4. How to deploy app on s3
 
 The federation url has to be provided in `Config.js` file. The user will then be asked to select one of the following regions in the GUI.
 
@@ -57,3 +69,6 @@ A sample `bucket policy` is:
 
 Now goto the `Properties` tab in the aws console for this bucket and open `Static website hosting` option. In there select the option `Use this bucket to host a website` and provide `index.html` for both `Index document` and `Error document` text fields. Click on save and the website is now live!
 
+## 5. Already deployed demo
+
+Go to `http://try.macrometa.addressbook-streams.s3-website.us-east-2.amazonaws.com/` login with your tenant, fabric and credentials and start adding contacts.
