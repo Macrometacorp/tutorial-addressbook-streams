@@ -63,10 +63,10 @@ class App extends Component {
       wsUrl: '',
       producerUrl: '',
       loginModal: true,
-      tenant: '',
-      fabric: '',
-      username: '',
-      password: ''
+      tenant: 'demo',
+      fabric: '_system',
+      username: 'root',
+      password: 'demo'
     };
 
     this.onFabPress = this.onFabPress.bind(this);
@@ -111,7 +111,7 @@ class App extends Component {
         this.initWebSocket();
         var collection = this.createCollection();
         $.when(collection).done(function (r1) {
-         self.sleep(3000);
+         self.sleep(30000);
          self.fetchData();
         });
         this.fetchData();
@@ -242,6 +242,7 @@ class App extends Component {
             isLoading: false,
             data: data.result
           });
+          
         },
         error: function (data) {
           if (isDialog) {
@@ -515,12 +516,13 @@ class App extends Component {
         fullWidth
         open={loginModal}
       >
-        <DialogTitle id="form-dialog-title"> Enter Tenant and Fabric:</DialogTitle>
+        <DialogTitle id="form-dialog-title">Please login using defaults or use your own account:</DialogTitle>
         <DialogContent>
           <TextField
             onFocus={() => this.onTextInputFocus("tenant")}
             style={{ display: 'block' }}
             label="Tenant"
+            defaultValue = {this.state.tenant}
             onChange={(event) => {
               const newtenant = event.target.value;
               this.setState({ tenant: newtenant });
@@ -531,6 +533,7 @@ class App extends Component {
             onFocus={() => this.onTextInputFocus("fabric")}
             style={{ display: 'block' }}
             label="Fabric "
+            defaultValue = {this.state.fabric}
             onChange={(event) => {
               const newfabric = event.target.value;
               this.setState({ fabric: newfabric });
@@ -543,6 +546,7 @@ class App extends Component {
             onFocus={() => this.onTextInputFocus("username")}
             style={{ display: 'block' }}
             label="User "
+            defaultValue = {this.state.username}
             onChange={(event) => {
               const user = event.target.value;
               this.setState({ username: user });
@@ -556,6 +560,7 @@ class App extends Component {
             onFocus={() => this.onTextInputFocus("password")}
             style={{ display: 'block' }}
             label="Password "
+            defaultValue = {this.state.password}
             onChange={(event) => {
               const pass = event.target.value;
               this.setState({ password: pass });
@@ -578,8 +583,6 @@ class App extends Component {
       </Dialog>
     )
   }
-
-
 
   render() {
     const { data, selectedRegionName } = this.state;

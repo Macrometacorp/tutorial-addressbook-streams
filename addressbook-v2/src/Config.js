@@ -1,7 +1,9 @@
 const Config = {
-    global: "qa1.eng1.macrometa.io",
-    Ghislain: "qa1-europe-west1.eng1.macrometa.io",
-    ashburn: "qa1-us-east4.eng1.macrometa.io",
+    global: "try.macrometa.io",
+    Dalles: "try2-us-west1.prod.macrometa.io",
+    ashburn: "try2-us-east4.prod.macrometa.io",
+    ghislain: "try2-europe-west1.prod.macrometa.io",
+    Mumbai: "try2-asia-south1.prod.macrometa.io"
 }
 
 export default Config;
