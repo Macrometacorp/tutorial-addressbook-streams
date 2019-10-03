@@ -103,7 +103,6 @@ class App extends Component {
       success: (data) => {
         const { jwt, tenant } = data;
         this.jwtToken = jwt;
-        debugger;
         this.tenant = tenant;
         this.setState({
           regionModal: false,
