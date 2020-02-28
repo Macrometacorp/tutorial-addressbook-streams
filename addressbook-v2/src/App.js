@@ -94,7 +94,7 @@ class App extends Component {
       password: password
     };
 
-    const url = `https://${selectedRegionUrl}/_tenant/_mm/_fabric/_system/_open/auth`;
+    const url = `https://api-${selectedRegionUrl}/_open/auth`;
     $.ajax({
       url,
       method: 'POST',
@@ -127,7 +127,7 @@ class App extends Component {
   createCollection() {
     const self = this;
     let exist = false;
-    let url = `https://${this.state.selectedRegionUrl}/_tenant/${this.tenant}/_fabric/${this.state.fabric}/collection`;
+    let url = `https://api-${this.state.selectedRegionUrl}/_tenant/${this.tenant}/_fabric/${this.state.fabric}/collection`;
     return $.ajax({
       type: "GET",
       contentType: 'text/plain',
@@ -159,7 +159,7 @@ class App extends Component {
   }
 
   collection() {
-    let url = `https://${this.state.selectedRegionUrl}/_tenant/${this.tenant}/_fabric/${this.state.fabric}/collection`;
+    let url = `https://api-${this.state.selectedRegionUrl}/_tenant/${this.tenant}/_fabric/${this.state.fabric}/collection`;
     $.ajax({
       type: "POST",
       contentType: 'text/plain',
