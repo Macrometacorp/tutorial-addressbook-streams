@@ -99,7 +99,7 @@ class App extends Component {
       password: this.state.password
     };
 
-    const url = `https://${this.state.selectedRegionUrl}/_tenant/_mm/_fabric/_system/_open/auth`;
+    const url = `https://${this.state.selectedRegionUrl}/_open/auth`;
     $.ajax({
       url,
       method: 'POST',
