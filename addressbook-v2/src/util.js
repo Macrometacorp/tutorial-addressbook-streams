@@ -23,7 +23,7 @@ export const addOrUpdateUtil = (payload, data) => {
 }
 
 
-export const getWsUrl =(url, tenant, fabric, otp) => `wss://api-${url}/_ws/ws/v2/consumer/persistent/${tenant}/c8local.${fabric}/addresses/${getRandomInt()}?otp=${otp}`;
+export const getWsUrl =(url, tenant, fabric) => `wss://api-${url}/_ws/ws/v2/consumer/persistent/${tenant}/c8local.${fabric}/addresses/${getRandomInt()}`;
 
 export const getProducerUrl = (url, tenant, fabric) => `wss://api-${url}/_ws/ws/v2/producer/persistent/${tenant}/c8local.${fabric}/addresses`;
 

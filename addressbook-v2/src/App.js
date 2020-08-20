@@ -126,24 +126,14 @@ class App extends Component {
     })
   }
 
-  getOtp(){
-    let self = this;
-    let wsotp = '';
+  getOtp() {
     let url = `https://api-${this.state.selectedRegionUrl}/apid/otp`;
     return $.ajax({
       type: "POST",
       contentType: 'text/plain',
       processData: false,
       cache: false,
-      url,
-      success: function (data) {
-        wsotp = data.otp;
-        //self.setState({wsotp:data.otp})
-      }
-
-    }).then((data)=>{
-      console.log("++++", data)
-      return data
+      url
     });
   }
 
@@ -210,27 +200,29 @@ class App extends Component {
   }
 
   initWebSocket() {
+    this.getOtp().then(({ otp }) => {
+      const { wsUrl } = this.state;
+      this.connection = new WebSocket(`${wsUrl}?otp=${otp}`);
 
-    let otp = this.getOtp()
-    console.log("******", otp)
-    const { wsUrl, producerUrl } = this.state;
-    this.connection = new WebSocket(wsUrl);
+      this.connection.onmessage = this.onSocketMessageReceived;
 
-    this.connection.onmessage = this.onSocketMessageReceived;
+      this.connection.onopen = () => console.log("WS connection established");
 
-    this.connection.onopen = () => console.log("WS connection established");
+      this.connection.onerror = () => console.log("Failed to establish WS connection");
 
-    this.connection.onerror = () => console.log("Failed to establish WS connection");
+      this.connection.onclose = () => console.log("Closing WS connection");
+    });
+    
+    this.getOtp().then(({ otp }) => {
+      const { producerUrl } = this.state;
+      this.producer = new WebSocket(`${producerUrl}?otp=${otp}`);
 
-    this.connection.onclose = () => console.log("Closing WS connection");
-
-    this.producer = new WebSocket(producerUrl);
-
-    this.producer.onopen = () => {
-      setInterval(() => {
-        this.producer.send(JSON.stringify({ 'payload': 'noop' }))
-      }, 30000);
-    }
+      this.producer.onopen = () => {
+        setInterval(() => {
+          this.producer.send(JSON.stringify({ 'payload': 'noop' }))
+        }, 30000);
+      }
+    });
 
   }
 
