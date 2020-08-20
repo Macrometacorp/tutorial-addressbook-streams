@@ -23,11 +23,11 @@ export const addOrUpdateUtil = (payload, data) => {
 }
 
 
-export const getWsUrl =(url, tenant, fabric) => `wss://${url}/_ws/ws/v2/consumer/persistent/${tenant}/c8local.${fabric}/addresses/${getRandomInt()}`;
+export const getWsUrl =(url, tenant, fabric, otp) => `wss://api-${url}/_ws/ws/v2/consumer/persistent/${tenant}/c8local.${fabric}/addresses/${getRandomInt()}?otp=${otp}`;
 
-export const getProducerUrl = (url, tenant, fabric) => `wss://${url}/_ws/ws/v2/producer/persistent/${tenant}/c8local.${fabric}/addresses`;
+export const getProducerUrl = (url, tenant, fabric) => `wss://api-${url}/_ws/ws/v2/producer/persistent/${tenant}/c8local.${fabric}/addresses`;
 
-export const getBaseUrl = (url, tenant, fabric) => `https://${url}/_tenant/${tenant}/_fabric/${fabric}/cursor`;
+export const getBaseUrl = (url, tenant, fabric) => `https://api-${url}/_tenant/${tenant}/_fabric/${fabric}/cursor`;
 
 
 export const makeRegionData = config => {

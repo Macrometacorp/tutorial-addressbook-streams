@@ -63,13 +63,14 @@ class App extends Component {
       wsUrl: '',
       producerUrl: '',
       loginModal: true,
-      tenant: 'demo',
+      email: "demo@macrometa.io",
       fabric: '_system',
-      username: 'root',
-      password: 'demo'
+      password: 'demo',
+      wsotp: ''
     };
 
     this.onFabPress = this.onFabPress.bind(this);
+    this.getOtp = this.getOtp.bind(this);
     this.handleFormChange = this.handleFormChange.bind(this);
     this.onSavePressed = this.onSavePressed.bind(this);
     this.resetModalData = this.resetModalData.bind(this);
@@ -79,6 +80,7 @@ class App extends Component {
     this.connection = undefined;
     this.producer = undefined;
     this.jwtToken = undefined;
+    this.tenant = undefined;
   }
 
   componentWillUnmount() {
@@ -87,44 +89,70 @@ class App extends Component {
   }
 
   login() {
-    /*const data = {
-      tenant: 'demo',
-      username: 'root',
-      password: 'demo'
-    };*/
+    const { email, password, selectedRegionUrl } = this.state;
     const self = this;
     const data = {
-      tenant: this.state.tenant,
-      username: this.state.username,
-      password: this.state.password
+      email: email,
+      password: password
     };
 
-    const url = `https://${this.state.selectedRegionUrl}/_open/auth`;
+    const url = `https://api-${selectedRegionUrl}/_open/auth`;
     $.ajax({
       url,
       method: 'POST',
       data: JSON.stringify(data),
       dataType: 'json',
       success: (data) => {
-        this.jwtToken = data.jwt;
-        this.ajaxSetup();
-        this.initWebSocket();
-        var collection = this.createCollection();
-        $.when(collection).done(function (r1) {
-         self.sleep(30000);
-         self.fetchData();
+        const { jwt, tenant } = data;
+        this.jwtToken = jwt;
+        this.tenant = tenant;
+        this.setState({
+          regionModal: false,
+          baseUrl: getBaseUrl(selectedRegionUrl, this.tenant, this.state.fabric),
+          wsUrl: getWsUrl(selectedRegionUrl, this.tenant, this.state.fabric),
+          producerUrl: getProducerUrl(selectedRegionUrl, this.tenant, this.state.fabric)
+        }, () => {
+          this.ajaxSetup();
+          this.initWebSocket();
+          var collection = this.createCollection();
+          $.when(collection).done(function (r1) {
+            self.sleep(30000);
+            self.fetchData();
+          });
+          this.fetchData();
         });
-        this.fetchData();
       },
       error: () => this.handleSnackbar("Auth failed.")
     })
   }
 
+  getOtp(){
+    let self = this;
+    let wsotp = '';
+    let url = `https://api-${this.state.selectedRegionUrl}/apid/otp`;
+    return $.ajax({
+      type: "POST",
+      contentType: 'text/plain',
+      processData: false,
+      cache: false,
+      url,
+      success: function (data) {
+        wsotp = data.otp;
+        //self.setState({wsotp:data.otp})
+      }
+
+    }).then((data)=>{
+      console.log("++++", data)
+      return data
+    });
+  }
+
+
   createCollection() {
     const self = this;
     let exist = false;
-    let url = `https://${this.state.selectedRegionUrl}/_tenant/${this.state.tenant}/_fabric/${this.state.fabric}/collection`;
-     return $.ajax({
+    let url = `https://api-${this.state.selectedRegionUrl}/_tenant/${this.tenant}/_fabric/${this.state.fabric}/collection`;
+    return $.ajax({
       type: "GET",
       contentType: 'text/plain',
       processData: false,
@@ -155,8 +183,8 @@ class App extends Component {
   }
 
   collection() {
-    let url = `https://${this.state.selectedRegionUrl}/_tenant/${this.state.tenant}/_fabric/${this.state.fabric}/collection`;
-     $.ajax({
+    let url = `https://api-${this.state.selectedRegionUrl}/_tenant/${this.tenant}/_fabric/${this.state.fabric}/collection`;
+    $.ajax({
       type: "POST",
       contentType: 'text/plain',
       processData: false,
@@ -182,6 +210,9 @@ class App extends Component {
   }
 
   initWebSocket() {
+
+    let otp = this.getOtp()
+    console.log("******", otp)
     const { wsUrl, producerUrl } = this.state;
     this.connection = new WebSocket(wsUrl);
 
@@ -242,7 +273,7 @@ class App extends Component {
             isLoading: false,
             data: data.result
           });
-          
+
         },
         error: function (data) {
           if (isDialog) {
@@ -461,18 +492,6 @@ class App extends Component {
     return dialogContent;
   }
 
-  handleModalClose() {
-    const { selectedRegionUrl } = this.state;
-    this.setState({
-      regionModal: false,
-      baseUrl: getBaseUrl(selectedRegionUrl, this.state.tenant, this.state.fabric),
-      wsUrl: getWsUrl(selectedRegionUrl, this.state.tenant, this.state.fabric),
-      producerUrl: getProducerUrl(selectedRegionUrl, this.state.tenant, this.state.fabric)
-    }, () => {
-      this.login();
-    });
-  }
-
   renderRegionModal() {
     const { regionModal, availableRegions, selectedRegionUrl } = this.state;
     return (
@@ -499,7 +518,7 @@ class App extends Component {
         <DialogActions>
           <Button
             disabled={!selectedRegionUrl}
-            onClick={() => this.handleModalClose()}
+            onClick={() => this.login()}
             size="small" variant="text" color="primary">
             <span className="actions">CONFIRM</span>
           </Button>
@@ -519,13 +538,13 @@ class App extends Component {
         <DialogTitle id="form-dialog-title">Please login using defaults or use your own account:</DialogTitle>
         <DialogContent>
           <TextField
-            onFocus={() => this.onTextInputFocus("tenant")}
+            onFocus={() => this.onTextInputFocus("email")}
             style={{ display: 'block' }}
-            label="Tenant"
-            defaultValue = {this.state.tenant}
+            label="Email"
+            defaultValue={this.state.email}
             onChange={(event) => {
-              const newtenant = event.target.value;
-              this.setState({ tenant: newtenant });
+              const email = event.target.value;
+              this.setState({ email });
             }}
             margin="normal"
           />
@@ -533,23 +552,10 @@ class App extends Component {
             onFocus={() => this.onTextInputFocus("fabric")}
             style={{ display: 'block' }}
             label="Fabric "
-            defaultValue = {this.state.fabric}
+            defaultValue={this.state.fabric}
             onChange={(event) => {
               const newfabric = event.target.value;
               this.setState({ fabric: newfabric });
-
-            }}
-            margin="normal"
-          />
-
-          <TextField
-            onFocus={() => this.onTextInputFocus("username")}
-            style={{ display: 'block' }}
-            label="User "
-            defaultValue = {this.state.username}
-            onChange={(event) => {
-              const user = event.target.value;
-              this.setState({ username: user });
 
             }}
             margin="normal"
@@ -560,7 +566,7 @@ class App extends Component {
             onFocus={() => this.onTextInputFocus("password")}
             style={{ display: 'block' }}
             label="Password "
-            defaultValue = {this.state.password}
+            defaultValue={this.state.password}
             onChange={(event) => {
               const pass = event.target.value;
               this.setState({ password: pass });

@@ -10,7 +10,7 @@ Demo to show custom C8Fn and real-time capabilities of C8.
 The following have to be present in the federation before starting the UI or else the network calls will fail crashing the app.
 
 ```js
-tenant: demo
+email: demo@macrometa.io
 ```
 
 Login with `demo` tenant and create the following:
@@ -19,7 +19,7 @@ Login with `demo` tenant and create the following:
 fabric: addressbook
 ```
 
-Then login with `demo` tenant, `root` and `addressbook` fabric and create the following:
+Then login with `demo@macrometa.io` email and `addressbook` fabric and create the following:
 
 ```js
 collection: addresses

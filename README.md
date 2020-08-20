@@ -18,11 +18,13 @@ The federation url has to be provided in `Config.js` file. The user will then be
 
 ```js
 const Config = {
-    global: "demo1.demo.aws.macrometa.io",
-    ashburn: "demo1-us-west-1.demo.aws.macrometa.io",
-    dublin: "demo1-eu-west-1.demo.aws.macrometa.io",
-    incheon: "demo1-ap-northeast-2.demo.aws.macrometa.io"
+    global: "gdn1.prod.macrometa.io",
+    Toronto: "gdn1-tor1.prod.macrometa.io",
+    London: "gdn1-lon1.prod.macrometa.io",
+    Bengaluru: "gdn1-blr1.prod.macrometa.io",
+    Singapore: "gdn1-sgp1.prod.macrometa.io"
 }
+
 ```
 
 Once in the root level of the GUI (same as `package.json`), execute `npm install` if the `node_modules` folder is not present and then `npm start` to run the server locally.
@@ -34,11 +36,13 @@ The federation url has to be provided in `Config.js` file. The user will then be
 
 ```js
 const Config = {
-    global: "demo1.demo.aws.macrometa.io",
-    ashburn: "demo1-us-west-1.demo.aws.macrometa.io",
-    dublin: "demo1-eu-west-1.demo.aws.macrometa.io",
-    incheon: "demo1-ap-northeast-2.demo.aws.macrometa.io"
+    global: "gdn1.prod.macrometa.io",
+    Toronto: "gdn1-tor1.prod.macrometa.io",
+    London: "gdn1-lon1.prod.macrometa.io",
+    Bengaluru: "gdn1-blr1.prod.macrometa.io",
+    Singapore: "gdn1-sgp1.prod.macrometa.io"
 }
+
 ```
 
 Once in the root level of the GUI (same as `package.json`), execute `npm install` if the `node_modules` folder is not present and then `npm run build`. This will create an optimized production build of the application.
@@ -71,4 +75,4 @@ Now goto the `Properties` tab in the aws console for this bucket and open `Stati
 
 ## 5. Already deployed demo
 
-Go to `http://try.macrometa.addressbook-streams.s3-website.us-east-2.amazonaws.com/` login with your tenant, fabric and credentials and start adding contacts.
+Go to `http://addressbook.gdn1.s3-website-us-east-1.amazonaws.com/` login with your tenant, fabric and credentials and start adding contacts.
