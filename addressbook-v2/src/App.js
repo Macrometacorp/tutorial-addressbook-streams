@@ -65,10 +65,12 @@ class App extends Component {
       loginModal: true,
       email: "demo@macrometa.io",
       fabric: '_system',
-      password: 'demo'
+      password: 'demo',
+      wsotp: ''
     };
 
     this.onFabPress = this.onFabPress.bind(this);
+    this.getOtp = this.getOtp.bind(this);
     this.handleFormChange = this.handleFormChange.bind(this);
     this.onSavePressed = this.onSavePressed.bind(this);
     this.resetModalData = this.resetModalData.bind(this);
@@ -123,6 +125,18 @@ class App extends Component {
       error: () => this.handleSnackbar("Auth failed.")
     })
   }
+
+  getOtp() {
+    let url = `https://api-${this.state.selectedRegionUrl}/apid/otp`;
+    return $.ajax({
+      type: "POST",
+      contentType: 'text/plain',
+      processData: false,
+      cache: false,
+      url
+    });
+  }
+
 
   createCollection() {
     const self = this;
@@ -186,24 +200,29 @@ class App extends Component {
   }
 
   initWebSocket() {
-    const { wsUrl, producerUrl } = this.state;
-    this.connection = new WebSocket(wsUrl);
+    this.getOtp().then(({ otp }) => {
+      const { wsUrl } = this.state;
+      this.connection = new WebSocket(`${wsUrl}?otp=${otp}`);
 
-    this.connection.onmessage = this.onSocketMessageReceived;
+      this.connection.onmessage = this.onSocketMessageReceived;
 
-    this.connection.onopen = () => console.log("WS connection established");
+      this.connection.onopen = () => console.log("WS connection established");
 
-    this.connection.onerror = () => console.log("Failed to establish WS connection");
+      this.connection.onerror = () => console.log("Failed to establish WS connection");
 
-    this.connection.onclose = () => console.log("Closing WS connection");
+      this.connection.onclose = () => console.log("Closing WS connection");
+    });
+    
+    this.getOtp().then(({ otp }) => {
+      const { producerUrl } = this.state;
+      this.producer = new WebSocket(`${producerUrl}?otp=${otp}`);
 
-    this.producer = new WebSocket(producerUrl);
-
-    this.producer.onopen = () => {
-      setInterval(() => {
-        this.producer.send(JSON.stringify({ 'payload': 'noop' }))
-      }, 30000);
-    }
+      this.producer.onopen = () => {
+        setInterval(() => {
+          this.producer.send(JSON.stringify({ 'payload': 'noop' }))
+        }, 30000);
+      }
+    });
 
   }
 
