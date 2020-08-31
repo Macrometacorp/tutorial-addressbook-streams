@@ -1,8 +1,9 @@
 const Config = {
-    global: "qa2.eng3.macrometa.io",
-    Sfo2: "qa2-sfo2.eng3.macrometa.io",
-    london: "qa2-lon1.eng3.macrometa.io",
-    bangalore: "qa2-blr1.eng3.macrometa.io",
+    global: "gdn1.prod.macrometa.io",
+    Toronto: "gdn1-tor1.prod.macrometa.io",
+    London: "gdn1-lon1.prod.macrometa.io",
+    Bengaluru: "gdn1-blr1.prod.macrometa.io",
+    Singapore: "gdn1-sgp1.prod.macrometa.io"
 }
 
 export default Config;
