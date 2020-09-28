@@ -260,7 +260,9 @@ class App extends Component {
           "query": "FOR entry IN addresses RETURN entry"
         }),
         success: function (data) {
-          self.resetModalData();
+          if (!self.state.shouldShowModal) {
+            self.resetModalData();
+          }
           self.setState({
             isLoading: false,
             data: data.result
