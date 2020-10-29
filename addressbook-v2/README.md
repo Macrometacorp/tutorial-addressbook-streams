@@ -16,7 +16,7 @@ email: xxxx@macrometa.io
 Login with `xxxx` tenant and create the following:
 
 ```js
-fabric: addressbook
+fabric: xxxx
 ```
 
 Then login with `xxxx@macrometa.io` email and `addressbook` fabric and create the following:
