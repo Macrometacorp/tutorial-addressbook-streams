@@ -240,7 +240,7 @@ class App extends Component {
     this.connection.send(JSON.stringify(ackMsg));
     if (receiveMsg.payload !== 'noop') {
       const payload = JSON.parse(atob(receiveMsg.payload));
-      payload._delete ? this.deleteData(payload._key) : this.addOrUpdateData(payload);
+      payload.delete ? this.deleteData(payload._key) : this.addOrUpdateData(payload);
     }
   }
 
@@ -609,7 +609,7 @@ class App extends Component {
             <TableBody>
               {data.map(n => {
                 return (
-                  <TableRow key={Math.random()}>
+                  <TableRow key={n._key}>
                     <TableCell component="th" scope="row">
                       {n._key}
                     </TableCell>
