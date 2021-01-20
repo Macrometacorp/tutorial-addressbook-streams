@@ -240,7 +240,7 @@ class App extends Component {
     this.connection.send(JSON.stringify(ackMsg));
     if (receiveMsg.payload !== 'noop') {
       const payload = JSON.parse(atob(receiveMsg.payload));
-      payload.delete ? this.deleteData(payload._key) : this.addOrUpdateData(payload);
+      payload._delete? this.deleteData(payload._key) : this.addOrUpdateData(payload);
     }
   }
 
