@@ -4,8 +4,7 @@ export const getRandomInt = () => Math.floor(Math.random() * Math.floor(99999));
 
 export const deleteUtil = (key, data) => {
     const arr = data.reduce((acc, elem) => {
-        // todo: revert once fixed
-        const accArray = (key._key === elem._key) ? acc : [...acc, elem];
+        const accArray = (key === elem._key) ? acc : [...acc, elem];
         return accArray;
     }, []);
     return arr;
