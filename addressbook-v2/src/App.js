@@ -535,6 +535,7 @@ class App extends Component {
             onFocus={() => this.onTextInputFocus("email")}
             style={{ display: 'block' }}
             label="Email"
+            defaultValue={this.state.email}
             onChange={(event) => {
               const email = event.target.value;
               this.setState({ email });
@@ -559,6 +560,7 @@ class App extends Component {
             onFocus={() => this.onTextInputFocus("password")}
             style={{ display: 'block' }}
             label="Password "
+            defaultValue={this.state.password}
             onChange={(event) => {
               const pass = event.target.value;
               this.setState({ password: pass });
