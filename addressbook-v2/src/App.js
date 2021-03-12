@@ -64,7 +64,7 @@ class App extends Component {
       producerUrl: '',
       loginModal: true,
       email: "xxxx@macrometa.io",
-      fabric: 'xxxx',
+      fabric: '_system',
       password: 'xxxx',
       wsotp: ''
     };
@@ -529,13 +529,12 @@ class App extends Component {
         fullWidth
         open={loginModal}
       >
-        <DialogTitle id="form-dialog-title">Please login using defaults or use your own account:</DialogTitle>
+        <DialogTitle id="form-dialog-title">Please login to your Macrometa account:</DialogTitle>
         <DialogContent>
           <TextField
             onFocus={() => this.onTextInputFocus("email")}
             style={{ display: 'block' }}
             label="Email"
-            defaultValue={this.state.email}
             onChange={(event) => {
               const email = event.target.value;
               this.setState({ email });
@@ -560,7 +559,6 @@ class App extends Component {
             onFocus={() => this.onTextInputFocus("password")}
             style={{ display: 'block' }}
             label="Password "
-            defaultValue={this.state.password}
             onChange={(event) => {
               const pass = event.target.value;
               this.setState({ password: pass });
