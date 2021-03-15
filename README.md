@@ -2,14 +2,12 @@
 
 ## 1. Overview
 
-Demo to show a real-time adrressbook for three different regions.
+Demo to show a real-time adrress book!
 
 
 ## 2.Pre-requisites
 
 Pull latest `tutorial-addressbook-streams` code.
-
-Update the regions of your federation in the Config file
 
 
 ## 3. How to Run app locally.
@@ -18,7 +16,7 @@ The federation url has to be provided in `Config.js` file. The user will then be
 
 ```js
 const Config = {
-  global: "gdn.paas.prod.macrometa.io",
+  global: "gdn.paas.macrometa.io",
   Fremont: "gdn-us-west.paas.macrometa.io",
   London: "gdn-eu-west.paas.macrometa.io",
   Mumbai: "gdn-ap-west.paas.macrometa.io",
@@ -38,7 +36,7 @@ The federation url has to be provided in `Config.js` file. The user will then be
 
 ```js
 const Config = {
-  global: "gdn.paas.prod.macrometa.io",
+  global: "gdn.paas.macrometa.io",
   Fremont: "gdn-us-west.paas.macrometa.io",
   London: "gdn-eu-west.paas.macrometa.io",
   Mumbai: "gdn-ap-west.paas.macrometa.io",
@@ -77,6 +75,25 @@ A sample `bucket policy` is:
 
 Now goto the `Properties` tab in the aws console for this bucket and open `Static website hosting` option. In there select the option `Use this bucket to host a website` and provide `index.html` for both `Index document` and `Error document` text fields. Click on save and the website is now live!
 
-## 5. Already deployed demo
+
+# 6. Login to your Macrometa Account
+
+Once you have the app running, you will need to login with your Macrometa account information.
+
+```js
+email: name@youremail.com
+```
+
+Your fabric name will be:
+
+```js
+fabric: _system
+```
+
+Now use the password you use to log into Macrometa.
+
+If you haven't already, please [walk through the tutorial](https://macrometa.dev/demos/address-book/) in our docs, so the required collection is set up! 
+
+## Check out this already deployed demo
 
 Go to `http://addressbook.gdn1.s3-website-us-east-1.amazonaws.com/` login with your tenant, fabric and credentials and start adding contacts.
