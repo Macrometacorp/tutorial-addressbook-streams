@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/addressbook-v2/precache-manifest.f15f2729a61b3d612a818e6fb5f63f88.js"
+  "/tutorial-addressbook-streams/precache-manifest.4ee4767bbde828f17b3b346798454b2c.js"
 );
 
 workbox.clientsClaim();
@@ -28,7 +28,7 @@ self.__precacheManifest = [].concat(self.__precacheManifest || []);
 workbox.precaching.suppressWarnings();
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
-workbox.routing.registerNavigationRoute("/addressbook-v2/index.html", {
+workbox.routing.registerNavigationRoute("/tutorial-addressbook-streams/index.html", {
   
   blacklist: [/^\/_/,/\/[^/]+\.[^/]+$/],
 });
