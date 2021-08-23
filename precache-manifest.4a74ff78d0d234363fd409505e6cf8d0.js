@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "ddc7e525e58d4533bc7b",
-    "url": "/tutorial-addressbook-streams/static/css/main.1718cfd2.chunk.css"
+    "revision": "648abdaa8abf5bb89f68",
+    "url": "/tutorial-addressbook-streams/static/css/main.27527b52.chunk.css"
   },
   {
-    "revision": "ddc7e525e58d4533bc7b",
-    "url": "/tutorial-addressbook-streams/static/js/main.bda800bb.chunk.js"
+    "revision": "648abdaa8abf5bb89f68",
+    "url": "/tutorial-addressbook-streams/static/js/main.b8e2a976.chunk.js"
   },
   {
     "revision": "cee78f375f34bd29c3e7",
@@ -24,7 +24,7 @@ self.__precacheManifest = [
     "url": "/tutorial-addressbook-streams/static/media/circle_spinner.25ef2804.gif"
   },
   {
-    "revision": "2dab5bc6302668db64f7f6d378f2b80d",
+    "revision": "4a4f4713acfdbd17798c3d959e775273",
     "url": "/tutorial-addressbook-streams/index.html"
   }
 ];
