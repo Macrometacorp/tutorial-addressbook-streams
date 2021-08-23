@@ -63,7 +63,7 @@ class App extends Component {
       wsUrl: '',
       producerUrl: '',
       loginModal: true,
-      email: "xxxx@macrometa.io",
+      email: "demo@macrometa.io",
       fabric: '_system',
       password: 'xxxx',
       wsotp: ''
