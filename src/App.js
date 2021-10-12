@@ -66,7 +66,8 @@ class App extends Component {
       email: "demo@macrometa.io",
       fabric: '_system',
       password: 'xxxx',
-      wsotp: ''
+      wsotp: '',
+      emailRegex: new RegExp(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/)
     };
 
     this.onFabPress = this.onFabPress.bind(this);
@@ -317,12 +318,12 @@ class App extends Component {
       if (!lastName.trim()) {
         validationObject.lastNameHasError = true;
       }
-      if (!emailAddress.trim()) {
+      if (!emailAddress.trim() || !this.state.emailRegex.test(emailAddress.trim())) {
         validationObject.emailAddressHasError = true;
       }
     }
     else {
-      if (!this.state.lastEditElem.email.trim()) {
+      if (!this.state.lastEditElem.email.trim() || !this.state.emailRegex.test(this.state.lastEditElem.email.trim())) {
         validationObject.emailAddressHasError = true;
       }
     }
@@ -433,6 +434,7 @@ class App extends Component {
           error={this.state.firstNameHasError}
           style={{ display: 'block' }}
           label="First Name"
+          inputProps={{ maxLength: 24 }}
           value={this.state.isEdit ? firstname : this.state.firstName}
           onChange={(event) => {
             if (this.state.isEdit) {
@@ -451,6 +453,7 @@ class App extends Component {
           error={this.state.lastNameHasError}
           style={{ display: 'block' }}
           label="Last Name"
+          inputProps={{ maxLength: 24 }}
           value={this.state.isEdit ? lastname : this.state.lastName}
           onChange={(event) => {
             if (this.state.isEdit) {
