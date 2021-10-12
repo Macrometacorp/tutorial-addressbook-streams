@@ -1,15 +1,22 @@
 {
-  "main.css": "/tutorial-addressbook-streams/static/css/main.27527b52.chunk.css",
-  "main.js": "/tutorial-addressbook-streams/static/js/main.b8e2a976.chunk.js",
-  "main.js.map": "/tutorial-addressbook-streams/static/js/main.b8e2a976.chunk.js.map",
-  "runtime~main.js": "/tutorial-addressbook-streams/static/js/runtime~main.3f3ab3ce.js",
-  "runtime~main.js.map": "/tutorial-addressbook-streams/static/js/runtime~main.3f3ab3ce.js.map",
-  "static/js/2.ba389b8d.chunk.js": "/tutorial-addressbook-streams/static/js/2.ba389b8d.chunk.js",
-  "static/js/2.ba389b8d.chunk.js.map": "/tutorial-addressbook-streams/static/js/2.ba389b8d.chunk.js.map",
-  "index.html": "/tutorial-addressbook-streams/index.html",
-  "precache-manifest.4a74ff78d0d234363fd409505e6cf8d0.js": "/tutorial-addressbook-streams/precache-manifest.4a74ff78d0d234363fd409505e6cf8d0.js",
-  "service-worker.js": "/tutorial-addressbook-streams/service-worker.js",
-  "static/css/main.27527b52.chunk.css.map": "/tutorial-addressbook-streams/static/css/main.27527b52.chunk.css.map",
-  "static/media/circle_spinner.gif": "/tutorial-addressbook-streams/static/media/circle_spinner.25ef2804.gif",
-  "static/media/macrometa-white-transparent.png": "/tutorial-addressbook-streams/static/media/macrometa-white-transparent.f541fb5a.png"
+  "files": {
+    "main.css": "/tutorial-addressbook-streams/static/css/main.8d2f1699.chunk.css",
+    "main.js": "/tutorial-addressbook-streams/static/js/main.800c37a2.chunk.js",
+    "main.js.map": "/tutorial-addressbook-streams/static/js/main.800c37a2.chunk.js.map",
+    "runtime-main.js": "/tutorial-addressbook-streams/static/js/runtime-main.814556c8.js",
+    "runtime-main.js.map": "/tutorial-addressbook-streams/static/js/runtime-main.814556c8.js.map",
+    "static/js/2.7e3f1e62.chunk.js": "/tutorial-addressbook-streams/static/js/2.7e3f1e62.chunk.js",
+    "static/js/2.7e3f1e62.chunk.js.map": "/tutorial-addressbook-streams/static/js/2.7e3f1e62.chunk.js.map",
+    "index.html": "/tutorial-addressbook-streams/index.html",
+    "static/css/main.8d2f1699.chunk.css.map": "/tutorial-addressbook-streams/static/css/main.8d2f1699.chunk.css.map",
+    "static/js/2.7e3f1e62.chunk.js.LICENSE.txt": "/tutorial-addressbook-streams/static/js/2.7e3f1e62.chunk.js.LICENSE.txt",
+    "static/media/circle_spinner.ba4ecef0.gif": "/tutorial-addressbook-streams/static/media/circle_spinner.ba4ecef0.gif",
+    "static/media/macrometa-white-transparent.c34a418e.png": "/tutorial-addressbook-streams/static/media/macrometa-white-transparent.c34a418e.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.814556c8.js",
+    "static/js/2.7e3f1e62.chunk.js",
+    "static/css/main.8d2f1699.chunk.css",
+    "static/js/main.800c37a2.chunk.js"
+  ]
 }
