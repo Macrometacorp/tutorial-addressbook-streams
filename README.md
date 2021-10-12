@@ -1,99 +1,56 @@
 # Global Address Book
 
-## 1. Overview
+### Live Demo: https://macrometacorp.github.io/tutorial-addressbook-streams/
 
-Demo to show a real-time adrress book!
+Demo to show a Real-time adrress book!
 
+## Setup
 
-## 2.Pre-requisites
+| **Federation**                                        | **Email**                              | **Passsword** |
+| ----------------------------------------------------- | -------------------------------------- | ------------- |
+| [Global Data Network](https://gdn.paas.macrometa.io/) | demo@macrometa.com | `xxxxxxxx`    |
 
-Pull latest `tutorial-addressbook-streams` code.
+## Overview
 
+**Dashboard:**
 
-## 3. How to Run app locally.
+![dashboard.png](dashboard.png)
 
-The federation url has to be provided in `Config.js` file. The user will then be asked to select one of the following regions in the GUI.
+### Macrometa Account setup
 
-```js
+1. Create the following collections in your Macrometa account:
+
+```
+addresses(global)
+```
+
+2. On the development machine, run the following commands in a console:
+
+```
+1. git clone git@github.com:Macrometacorp/tutorial-addressbook-streams.git
+2. cd tutorial-addressbook-streams
+3. git fetch
+4. npm install
+5. npm run start
+```
+
+3. Once you have the app running, you will be presented with a page to log in with your Macrometa account. Add your Macrometa account email and password. Keep the `fabric` field value as `_system`.
+
+4. The federation url has to be provided in Config.js file. The user will then be asked to select one of the following regions in the GUI.
+```
 const Config = {
-  global: "gdn.paas.macrometa.io",
-  Fremont: "gdn-us-west.paas.macrometa.io",
-  London: "gdn-eu-west.paas.macrometa.io",
-  Mumbai: "gdn-ap-west.paas.macrometa.io",
-  Singapore: "gdn-ap-south.paas.macrometa.io",
-  Tokyo: "gdn-ap-northeast.paas.macrometa.io",
-  Sydney: "gdn-ap-sydney.paas.macrometa.io"
-}
-
+    global: "gdn.paas.macrometa.io",
+    Fremont: "gdn-us-west.paas.macrometa.io",
+    London: "gdn-eu-west.paas.macrometa.io",
+    Mumbai: "gdn-ap-west.paas.macrometa.io",
+    Singapore: "gdn-ap-south.paas.macrometa.io",
+    Tokyo: "gdn-ap-northeast.paas.macrometa.io",
+    Sydney: "gdn-ap-sydney.paas.macrometa.io"
+};
 ```
 
-Once in the root level of the GUI (same as `package.json`), execute `npm install` if the `node_modules` folder is not present and then `npm start` to run the server locally.
-Enter the tenant name, fabric name and credentials on the UI.
-
-## 4. How to deploy app on s3
-
-The federation url has to be provided in `Config.js` file. The user will then be asked to select one of the following regions in the GUI.
-
-```js
-const Config = {
-  global: "gdn.paas.macrometa.io",
-  Fremont: "gdn-us-west.paas.macrometa.io",
-  London: "gdn-eu-west.paas.macrometa.io",
-  Mumbai: "gdn-ap-west.paas.macrometa.io",
-  Singapore: "gdn-ap-south.paas.macrometa.io",
-  Tokyo: "gdn-ap-northeast.paas.macrometa.io",
-  Sydney: "gdn-ap-sydney.paas.macrometa.io"
-}
+5. Deploy on GH Pages:
 
 ```
-
-Once in the root level of the GUI (same as `package.json`), execute `npm install` if the `node_modules` folder is not present and then `npm run build`. This will create an optimized production build of the application.
-
-After it executes to completion, there will be a new folder named `build` in the root level.
-
-The contents of this `build` folder need to be copied to the S3 bucket.
-
-If using aws cli run `aws s3 cp build s3://<your-s3-bucket-name> --recursive` to recursively copy all files and folders inside the `build` folder to the S3 bucket.
-
-The bucket needs to be public in order for the website to be visible.
-A sample `bucket policy` is:
-
-```js
-{
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Sid": "PublicReadGetObject",
-            "Effect": "Allow",
-            "Principal": "*",
-            "Action": "s3:GetObject",
-            "Resource": "arn:aws:s3:::<your-s3-bucket-name>/*"
-        }
-    ]
-}
+1. npm run deploy
 ```
-
-Now goto the `Properties` tab in the aws console for this bucket and open `Static website hosting` option. In there select the option `Use this bucket to host a website` and provide `index.html` for both `Index document` and `Error document` text fields. Click on save and the website is now live!
-
-
-# 6. Login to your Macrometa Account
-
-Once you have the app running, you will need to login with your Macrometa account information.
-
-```js
-email: name@youremail.com
-```
-
-Your fabric name will be:
-
-```js
-fabric: _system
-```
-
-Now use the password you use to log into Macrometa.
-
-If you haven't already, please [walk through the tutorial](https://macrometa.dev/demos/address-book/) in our docs, so the required collection is set up! 
-
-## Check out this already deployed demo
-
-Go to `http://addressbook.gdn1.s3-website-us-east-1.amazonaws.com/` login with your tenant, fabric and credentials and start adding contacts.
