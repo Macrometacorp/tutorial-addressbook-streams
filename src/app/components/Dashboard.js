@@ -23,11 +23,11 @@ const Dashboard = () => {
 
     return (
         <Container className={classes.root} maxWidth={false}>
-            <Login />
             <SelectRegion />
             <Header />
             <ButtonBar />
             <SnackbarAlertContextProvider>
+                <Login />
                 <ContactContextProvider>
                     <AddUpdateContact />
                     <AddressBookTable />

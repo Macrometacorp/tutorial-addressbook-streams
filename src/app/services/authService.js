@@ -7,7 +7,7 @@ const login = async (username, password) => {
 
         return jwtToken
     } catch (error) {
-        console.error(error)
+        throw error
     }
 }
 

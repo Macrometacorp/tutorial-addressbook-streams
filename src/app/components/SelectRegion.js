@@ -70,7 +70,7 @@ const SelectRegion = () => {
         <Dialog open={appConfig.showSelectDataCenter} fullWidth={true} maxWidth={"sm"}>
             <Paper>
                 <Card>
-                    <CardHeader title="Select a Rgion" sx={{ pb: "0" }} />
+                    <CardHeader title="Select a Region" sx={{ pb: "0" }} />
                     <CardContent sx={{ display: "flex", flexDirection: "column" }}>
                         <Divider />
                         <FormControl sx={{ m: 3, mt: 1 }} variant="outlined">

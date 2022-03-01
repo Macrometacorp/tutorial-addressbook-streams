@@ -36,7 +36,7 @@ export const SnackbarAlertContextProvider = ({ children }) => {
                 }}
             >
                 <Alert severity={alert.severity} onClose={handleClose} sx={{ width: "100%" }}>
-                    {alert.message}
+                    <b>{alert.message}</b>
                 </Alert>
             </Snackbar>
             {children}

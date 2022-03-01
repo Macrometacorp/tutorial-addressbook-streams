@@ -16,11 +16,21 @@ import {
 } from "@mui/material"
 import React, { useState } from "react"
 import useApp from "../../hooks/useApp"
+import useSnackbarAlert from "../../hooks/useSnackbarAlert"
 import * as AuthService from "../services/authService"
 
 const Login = () => {
     const [showPassword, setShowPassword] = useState(false)
     const { jsc8Config, setJsc8Config, appConfig, setAppConfig } = useApp()
+    const { setAlert } = useSnackbarAlert()
+
+    const setAlertMessage = (message, severity = "error", open = true) => {
+        setAlert({
+            message,
+            severity,
+            open,
+        })
+    }
 
     const updateJsc8Config = (key, value) => {
         setJsc8Config((prev) => {
@@ -40,15 +50,20 @@ const Login = () => {
     }
 
     const login = async () => {
-        const jwtToken = await AuthService.login(jsc8Config.username, jsc8Config.password)
-        updateJsc8Config("bearerToken", jwtToken)
-        setAppConfig((prev) => {
-            return {
-                ...prev,
-                showLogin: false,
-                showSelectDataCenter: true,
-            }
-        })
+        try {
+            const jwtToken = await AuthService.login(jsc8Config.username, jsc8Config.password)
+            updateJsc8Config("bearerToken", jwtToken)
+            setAppConfig((prev) => {
+                return {
+                    ...prev,
+                    showLogin: false,
+                    showSelectDataCenter: true,
+                }
+            })
+            setAlertMessage("", "success", false)
+        } catch (error) {
+            setAlertMessage("Incorrect username or password.")
+        }
     }
 
     return (
