@@ -1,0 +1,6 @@
+env
+npm-debug.log
+build
+**/.git
+**/.cache
+**/.DS_Store
