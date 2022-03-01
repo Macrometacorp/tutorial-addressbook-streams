@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/tutorial-addressbook-streams/static/css/main.e6c13ad2.css",
-    "main.js": "/tutorial-addressbook-streams/static/js/main.61a05845.js",
+    "main.js": "/tutorial-addressbook-streams/static/js/main.8137480b.js",
     "static/js/787.7694c8bb.chunk.js": "/tutorial-addressbook-streams/static/js/787.7694c8bb.chunk.js",
     "index.html": "/tutorial-addressbook-streams/index.html",
     "main.e6c13ad2.css.map": "/tutorial-addressbook-streams/static/css/main.e6c13ad2.css.map",
-    "main.61a05845.js.map": "/tutorial-addressbook-streams/static/js/main.61a05845.js.map",
+    "main.8137480b.js.map": "/tutorial-addressbook-streams/static/js/main.8137480b.js.map",
     "787.7694c8bb.chunk.js.map": "/tutorial-addressbook-streams/static/js/787.7694c8bb.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.e6c13ad2.css",
-    "static/js/main.61a05845.js"
+    "static/js/main.8137480b.js"
   ]
 }
