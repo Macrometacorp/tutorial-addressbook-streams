@@ -133,6 +133,7 @@ const AddUpdateContact = () => {
                                 id="outlined-first-name"
                                 label="First name"
                                 type="text"
+                                inputProps={{ maxLength: 24 }}
                                 value={contactDetail.firstName}
                                 onChange={(event) => handleInputChange("firstName", event.target.value)}
                             />
@@ -146,6 +147,7 @@ const AddUpdateContact = () => {
                                 id="outlined-last-name"
                                 label="Last name"
                                 type="text"
+                                inputProps={{ maxLength: 24 }}
                                 value={contactDetail.lastName}
                                 onChange={(event) => handleInputChange("lastName", event.target.value)}
                             />
@@ -159,6 +161,7 @@ const AddUpdateContact = () => {
                                 id="outlined-email"
                                 label="Email"
                                 type="email"
+                                inputProps={{ maxLength: 50 }}
                                 value={contactDetail.email}
                                 onChange={(event) => handleInputChange("email", event.target.value)}
                             />
