@@ -34,10 +34,10 @@ addresses(global)
 5. npm run start
 ```
 
-3. Once you have the app running, you will be presented with a page to log in with your Macrometa account. Add your Macrometa account email and password.
+3. Rename `.env.sample` to `.env` and update the `REACT_APP_GDN_URL` with `https://gdn.paas.macrometa.io`
 
-4. The GDN url has to be provided in `src/util/constants.js` file. The user will then be asked to select one region in the GUI.
-
+4. Once you have the app running, you will be presented with a page to log in with your Macrometa account. Add your Macrometa account email and password and the user will then be asked to select one region in the GUI.
+ 
 5. Deploy on GH Pages:
 
 ```
