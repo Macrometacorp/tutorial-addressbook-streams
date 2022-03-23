@@ -17,20 +17,4 @@ const createStreamReader = async (streamName) => {
     return response
 }
 
-const createStreamProducer = async (streamName) => {
-    let response
-    try {
-        const jsC8 = getInstance()
-        response = await jsC8.createStreamProducer(
-            streamName,
-            true,
-            true,
-            jsC8._connection._urls[0].replace("https://api-", ""),
-        )
-    } catch (error) {
-        console.error(error)
-    }
-    return response
-}
-
-export { createStreamReader, createStreamProducer }
+export { createStreamReader }

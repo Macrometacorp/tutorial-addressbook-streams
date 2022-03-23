@@ -14,7 +14,7 @@ import { makeStyles } from "@mui/styles"
 import React, { useEffect, useRef, useState } from "react"
 import { CloseRounded, EditRounded } from "@mui/icons-material"
 import { parseMessage } from "../../util/helperFunctions"
-import { createStreamProducer, createStreamReader } from "../services/streamsService"
+import { createStreamReader } from "../services/streamsService"
 import { ADDRESS_COLLECTION_NAME, DOCUMENT_OPERATIONS, RESTQL } from "../../util/constants"
 import { executeQuery } from "../services/restqlService"
 import useApp from "../../hooks/useApp"
@@ -44,7 +44,6 @@ const AddressBookTable = () => {
 
     const streamConsumer = useRef()
     const streamProducer = useRef()
-    const keepAliveInterval = useRef()
 
     const setAlertMessage = (message, severity = "error") => {
         setAlert({
@@ -121,23 +120,6 @@ const AddressBookTable = () => {
         }
     }
 
-    const establishStreamProducerConnection = async (streamName) => {
-        try {
-            streamProducer.current = await createStreamProducer(streamName)
-            addEventListener(streamProducer, streamName, "Producer")
-            keepAliveInterval.current = setInterval(() => {
-                if (streamProducer.current.getConnection().readyState !== 1) {
-                    clearInterval(keepAliveInterval.current)
-                    return
-                }
-
-                streamProducer.current.send(JSON.stringify({ payload: "" }))
-            }, 30000)
-        } catch (error) {
-            console.error("error", error)
-        }
-    }
-
     const getInitialData = async () => {
         try {
             const response = await executeQuery(RESTQL.GET_CONTACTS)
@@ -186,7 +168,6 @@ const AddressBookTable = () => {
             await getInitialData()
             await closeWsConnections()
             await establishStreamConsumerConnection(ADDRESS_COLLECTION_NAME)
-            await establishStreamProducerConnection(ADDRESS_COLLECTION_NAME)
         }
 
         if (isAppReady && selectedRegion && !showLogin && !showSelectDataCenter) {
