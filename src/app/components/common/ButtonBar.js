@@ -1,12 +1,18 @@
-import { LocationOnRounded } from "@mui/icons-material"
-import { Button, Chip, Typography } from "@mui/material"
+import React, { useState } from "react"
+import debounce from "lodash/debounce"
+import { Button, Chip, InputAdornment, TextField, Typography } from "@mui/material"
+import { LocationOnRounded, SearchRounded } from "@mui/icons-material"
 import { makeStyles } from "@mui/styles"
-import React from "react"
+
 import useApp from "../../../hooks/useApp"
+import useContact from "../../../hooks/useContact"
+import { RESTQL } from "../../../util/constants"
+import { executeQuery } from "../../services/restqlService"
 
 const useStyles = makeStyles({
     flex: {
         display: "flex",
+        alignItems: "center"
     },
     root: {
         display: "flex",
@@ -48,21 +54,25 @@ const ButtonBar = () => {
                     Change Region
                 </Button>
             </div>
-            <Button
-                variant="contained"
-                size="small"
-                color="primary"
-                onClick={() => {
-                    setAppConfig((prev) => {
-                        return {
-                            ...prev,
-                            addUpdateContact: true,
-                        }
-                    })
-                }}
-            >
-                Add Contact
-            </Button>
+            <div className={classes.flex}>
+                {/* Search bar goes here! */}
+
+                <Button
+                    variant="contained"
+                    size="small"
+                    color="primary"
+                    onClick={() => {
+                        setAppConfig((prev) => {
+                            return {
+                                ...prev,
+                                addUpdateContact: true,
+                            }
+                        })
+                    }}
+                >
+                    Add Contact
+                </Button>
+            </div>
         </div>
     )
 }
