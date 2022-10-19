@@ -31,7 +31,14 @@ const ButtonBar = () => {
         appConfig: { selectedRegion },
     } = useApp()
 
-    // Search bar handler goes here!
+    const { setAddressBookData } = useContact()
+
+    const getContactsBySearchTerm = debounce(async (searchTerm) => {
+        const response = await executeRestql("getContactBySearchTerm", {
+            searchTerm: searchTerm.toLowerCase() 
+        })
+        setAddressBookData(response)
+    }, 400)
 
     return (
         <div className={classes.root}>
@@ -56,7 +63,21 @@ const ButtonBar = () => {
                 </Button>
             </div>
             <div className={classes.flex}>
-                {/* Search bar goes here! */}
+                <TextField
+                    sx={{mr: 2}}
+                    hiddenLabel
+                    variant="outlined"
+                    size="small"
+                    placeholder="Search Contact"
+                    onChange={(event) => { getContactsBySearchTerm(event.target.value)}}
+                    InputProps={{
+                        endAdornment: (
+                            <InputAdornment position="end">
+                                <SearchRounded />
+                            </InputAdornment>
+                        )
+                    }}
+                />
 
                 <Button
                     variant="contained"
