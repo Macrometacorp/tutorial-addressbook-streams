@@ -11,3 +11,14 @@ export const executeQuery = async (query, params = {}) => {
         return restqlResponse
     }
 }
+
+export const executeRestql = async (name, params = {}) => {
+    try {
+        const jsC8 = getInstance()
+        const { result } = await jsC8.executeRestql(name, params);
+        return result;
+    } catch (error) {
+        console.error("Failed to execute", error.message)
+        return [];
+    }
+};

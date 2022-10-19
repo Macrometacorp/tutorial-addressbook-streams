@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React from "react"
 import debounce from "lodash/debounce"
 import { Button, Chip, InputAdornment, TextField, Typography } from "@mui/material"
 import { LocationOnRounded, SearchRounded } from "@mui/icons-material"
@@ -6,8 +6,7 @@ import { makeStyles } from "@mui/styles"
 
 import useApp from "../../../hooks/useApp"
 import useContact from "../../../hooks/useContact"
-import { RESTQL } from "../../../util/constants"
-import { executeQuery } from "../../services/restqlService"
+import { executeRestql } from "../../services/restqlService"
 
 const useStyles = makeStyles({
     flex: {
@@ -31,6 +30,8 @@ const ButtonBar = () => {
         setAppConfig,
         appConfig: { selectedRegion },
     } = useApp()
+
+    // Search bar handler goes here!
 
     return (
         <div className={classes.root}>
