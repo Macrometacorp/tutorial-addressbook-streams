@@ -32,13 +32,14 @@ const ButtonBar = () => {
     } = useApp()
 
     const { setAddressBookData } = useContact()
-
-    const getContactsBySearchTerm = debounce(async (searchTerm) => {
-        const response = await executeRestql("getContactBySearchTerm", {
-            searchTerm: searchTerm.toLowerCase() 
-        })
-        setAddressBookData(response)
-    }, 400)
+    
+    // This is the search enabled Query Worker that will power adding search to the app. Uncomment line 37 - 42 
+    // const getContactsBySearchTerm = debounce(async (searchTerm) => {
+    //     const response = await executeRestql("getContactBySearchTerm", {
+    //         searchTerm: searchTerm.toLowerCase() 
+    //     })
+    //     setAddressBookData(response)
+    // }, 400)
 
     return (
         <div className={classes.root}>
@@ -62,7 +63,8 @@ const ButtonBar = () => {
                     Change Region
                 </Button>
             </div>
-            <div className={classes.flex}>
+            {/* This code block add a search UI to the header. To enable it uncomment line 67 - 82 */}
+            {/* <div className={classes.flex}>
                 <TextField
                     sx={{mr: 2}}
                     hiddenLabel
@@ -77,7 +79,7 @@ const ButtonBar = () => {
                             </InputAdornment>
                         )
                     }}
-                />
+                /> */}
 
                 <Button
                     variant="contained"
@@ -95,7 +97,8 @@ const ButtonBar = () => {
                     Add Contact
                 </Button>
             </div>
-        </div>
+         // To enable search functionality you will need to uncomment this div close HTML tag after you have uncommented the Query Worker and search field code blocks   
+        // </div>
     )
 }
 
