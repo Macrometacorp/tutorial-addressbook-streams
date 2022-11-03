@@ -30,7 +30,7 @@ const useStyles = makeStyles({
 
 const AddressBookTable = () => {
     const classes = useStyles()
-    const { setContact } = useContact()
+    const { setContact, addressBookData, setAddressBookData } = useContact()
     const { setAlert } = useSnackbarAlert()
     const {
         appConfig: { isAppReady, selectedRegion, showLogin, showSelectDataCenter },
@@ -39,7 +39,6 @@ const AddressBookTable = () => {
 
     const [page, setPage] = useState(0)
     const [rowsPerPage, setRowsPerPage] = useState(10)
-    const [addressBookData, setAddressBookData] = useState([])
     const [triggerUseEffect, setTriggerUseEffect] = useState(0)
 
     const streamConsumer = useRef()

@@ -1,12 +1,17 @@
-import { LocationOnRounded } from "@mui/icons-material"
-import { Button, Chip, Typography } from "@mui/material"
-import { makeStyles } from "@mui/styles"
 import React from "react"
+import debounce from "lodash/debounce"
+import { Button, Chip, InputAdornment, TextField, Typography } from "@mui/material"
+import { LocationOnRounded, SearchRounded } from "@mui/icons-material"
+import { makeStyles } from "@mui/styles"
+
 import useApp from "../../../hooks/useApp"
+import useContact from "../../../hooks/useContact"
+import { executeRestql } from "../../services/restqlService"
 
 const useStyles = makeStyles({
     flex: {
         display: "flex",
+        alignItems: "center"
     },
     root: {
         display: "flex",
@@ -25,6 +30,16 @@ const ButtonBar = () => {
         setAppConfig,
         appConfig: { selectedRegion },
     } = useApp()
+
+    const { setAddressBookData } = useContact()
+    
+    // This is the search enabled Query Worker that will power adding search to the app. Uncomment line 37 - 42 
+    // const getContactsBySearchTerm = debounce(async (searchTerm) => {
+    //     const response = await executeRestql("getContactBySearchTerm", {
+    //         searchTerm: searchTerm.toLowerCase() 
+    //     })
+    //     setAddressBookData(response)
+    // }, 400)
 
     return (
         <div className={classes.root}>
@@ -48,22 +63,42 @@ const ButtonBar = () => {
                     Change Region
                 </Button>
             </div>
-            <Button
-                variant="contained"
-                size="small"
-                color="primary"
-                onClick={() => {
-                    setAppConfig((prev) => {
-                        return {
-                            ...prev,
-                            addUpdateContact: true,
-                        }
-                    })
-                }}
-            >
-                Add Contact
-            </Button>
-        </div>
+            {/* This code block add a search UI to the header. To enable it uncomment line 67 - 82 */}
+            {/* <div className={classes.flex}>
+                <TextField
+                    sx={{mr: 2}}
+                    hiddenLabel
+                    variant="outlined"
+                    size="small"
+                    placeholder="Search Contact"
+                    onChange={(event) => { getContactsBySearchTerm(event.target.value)}}
+                    InputProps={{
+                        endAdornment: (
+                            <InputAdornment position="end">
+                                <SearchRounded />
+                            </InputAdornment>
+                        )
+                    }}
+                /> */}
+
+                <Button
+                    variant="contained"
+                    size="small"
+                    color="primary"
+                    onClick={() => {
+                        setAppConfig((prev) => {
+                            return {
+                                ...prev,
+                                addUpdateContact: true,
+                            }
+                        })
+                    }}
+                >
+                    Add Contact
+                </Button>
+            </div>
+         // To enable search functionality you will need to uncomment this div close HTML tag after you have uncommented the Query Worker and search field code blocks   
+        // </div>
     )
 }
 

@@ -1,7 +1,7 @@
 import { Button, Grid, Typography } from "@mui/material"
 import { makeStyles } from "@mui/styles"
 import React from "react"
-import MacrometaLogo from "../../../images/logo.png"
+import MacrometaLogo from "../../../images/logomark.svg"
 import { DEMO_HEADING, GITHUB_URL } from "../../../util/constants"
 
 const useStyles = makeStyles({
