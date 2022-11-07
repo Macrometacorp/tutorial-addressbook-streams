@@ -63,7 +63,7 @@ const ButtonBar = () => {
                     Change Region
                 </Button>
             </div>
-            {/* This code block add a search UI to the header. To enable it uncomment line 67 - 82 */}
+            {/* This code block add a search UI to the header. To enable it uncomment line 67 - 82. Also remove the comment on the div at line 100 */}
             {/* <div className={classes.flex}>
                 <TextField
                     sx={{mr: 2}}
@@ -97,8 +97,7 @@ const ButtonBar = () => {
                     Add Contact
                 </Button>
             </div>
-        {/*  To enable search functionality you will need to uncomment this div close HTML tag after you have uncommented the Query Worker and search field code blocks */}
-       {/* </div> */}
+       // </div>
     )
 }
 
