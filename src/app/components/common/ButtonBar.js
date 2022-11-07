@@ -97,8 +97,8 @@ const ButtonBar = () => {
                     Add Contact
                 </Button>
             </div>
-         // To enable search functionality you will need to uncomment this div close HTML tag after you have uncommented the Query Worker and search field code blocks   
-        // </div>
+        {/*  To enable search functionality you will need to uncomment this div close HTML tag after you have uncommented the Query Worker and search field code blocks */}
+       {/* </div> */}
     )
 }
 
