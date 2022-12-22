@@ -97,7 +97,8 @@ const ButtonBar = () => {
                     Add Contact
                 </Button>
             </div>
-       // </div>
+        // Uncomment the div below this comment and delete line 100 (this line) to enable search
+        // </div>
     )
 }
 
