@@ -42,7 +42,7 @@ npm run deploy
 
 1. Follow the steps in the [Search Getting Started Tutorial](https://macrometa.com/docs/search/getting-started).
 
-2. Go to the `ButtonBar.js` component file and follow the instructions in the comments.
+2. Go to the [ButtonBar.js](https://github.com/Macrometacorp/tutorial-addressbook-streams/blob/master/src/app/components/common/ButtonBar.js) component file and follow the instructions in the comments.
 
 ![CleanShot 2022-12-21 at 17 36 26](https://user-images.githubusercontent.com/1088136/209036364-0d6c4497-8200-4cea-aceb-136a99b13547.png)
 
