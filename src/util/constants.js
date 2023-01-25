@@ -10,7 +10,7 @@ const DOCUMENT_OPERATIONS = {
     DELETE: "DELETE",
 }
 const RESTQL = {
-    GET_CONTACTS: "FOR data IN addresses RETURN data",
+    GET_CONTACTS: "FOR data IN addresses SORT data._key DESC RETURN data",
     INSERT_CONTACT:
         'INSERT { "firstName": TRIM(@firstName), "lastName": TRIM(@lastName), "email": TRIM(@email) } INTO addresses',
     UPDATE_CONTACT:
