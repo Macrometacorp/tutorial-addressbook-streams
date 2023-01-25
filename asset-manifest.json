@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/tutorial-addressbook-streams/static/css/main.4efb37a3.css",
-    "main.js": "/tutorial-addressbook-streams/static/js/main.e601c12e.js",
+    "main.js": "/tutorial-addressbook-streams/static/js/main.74106cd8.js",
     "static/js/27.44a024f4.chunk.js": "/tutorial-addressbook-streams/static/js/27.44a024f4.chunk.js",
     "static/media/logomark.svg": "/tutorial-addressbook-streams/static/media/logomark.04f454f86ad5c900c5e5b34542e6c3de.svg",
     "index.html": "/tutorial-addressbook-streams/index.html"
   },
   "entrypoints": [
     "static/css/main.4efb37a3.css",
-    "static/js/main.e601c12e.js"
+    "static/js/main.74106cd8.js"
   ]
 }
