@@ -9,8 +9,10 @@ import {
     FormControl,
     FormHelperText,
     InputLabel,
+    MenuItem,
     OutlinedInput,
     Paper,
+    Select,
 } from "@mui/material"
 import React, { useEffect, useState } from "react"
 import useApp from "../../hooks/useApp"
@@ -41,6 +43,7 @@ const AddUpdateContact = () => {
             firstName: "",
             lastName: "",
             email: "",
+            countryCode: "",
         }
         updateAppConfig("addUpdateContact", false)
         setContactDetail(_contact)
@@ -62,6 +65,7 @@ const AddUpdateContact = () => {
             severity: "success",
             open: true,
         }
+
         try {
             if (contact._key) {
                 await executeQuery(RESTQL.UPDATE_CONTACT, { key: contact._key, ...contactDetail })
@@ -113,6 +117,7 @@ const AddUpdateContact = () => {
             firstName: contact.firstName || "",
             lastName: contact.lastName || "",
             email: contact.email || "",
+            countryCode: contact.countryCode || "",
         })
 
         if (contact._key) {
@@ -155,7 +160,7 @@ const AddUpdateContact = () => {
                                 <FormHelperText id="outlined-last-name">Last name can not be empty.</FormHelperText>
                             )}
                         </FormControl>
-                        <FormControl sx={{ m: 3, mt: 1 }} variant="outlined" required error={validationError.email}>
+                        <FormControl sx={{ m: 3, my: 1 }} variant="outlined" required error={validationError.email}>
                             <InputLabel htmlFor="outlined-email">Email</InputLabel>
                             <OutlinedInput
                                 id="outlined-email"
@@ -168,6 +173,24 @@ const AddUpdateContact = () => {
                             {validationError.email && (
                                 <FormHelperText id="outlined-email">Please enter valid email.</FormHelperText>
                             )}
+                        </FormControl>
+                        <FormControl sx={{ m: 3, mt: 1 }} variant="outlined" required>
+                            <InputLabel htmlFor="outlined-email">Country</InputLabel>
+                            <Select
+                                id="outlined-country-code"
+                                label="Country"
+                                value={contactDetail.countryCode}
+                                onChange={(event) => handleInputChange("countryCode", event.target.value)}
+                            >
+                                <MenuItem value="CA">Canada</MenuItem>
+                                <MenuItem value="FR">France</MenuItem>
+                                <MenuItem value="FI">Finland</MenuItem>
+                                <MenuItem value="DE">Germany</MenuItem>
+                                <MenuItem value="MX">Mexico</MenuItem>
+                                <MenuItem value="NO">Norway</MenuItem>
+                                <MenuItem value="SG">Singapore</MenuItem>
+                                <MenuItem value="USA">United States of America</MenuItem>
+                            </Select>
                         </FormControl>
                         <Divider />
                     </CardContent>

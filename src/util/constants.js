@@ -13,9 +13,9 @@ const DOCUMENT_OPERATIONS = {
 const RESTQL = {
     GET_CONTACTS: "FOR data IN addresses SORT data._key DESC RETURN data",
     INSERT_CONTACT:
-        'INSERT { "firstName": TRIM(@firstName), "lastName": TRIM(@lastName), "email": TRIM(@email) } INTO addresses',
+        'INSERT { "firstName": TRIM(@firstName), "lastName": TRIM(@lastName), "email": TRIM(@email), "countryCode": TRIM(@countryCode) } INTO addresses',
     UPDATE_CONTACT:
-        'UPDATE @key WITH { "firstName": TRIM(@firstName), "lastName": TRIM(@lastName), "email": TRIM(@email) } IN addresses',
+        'UPDATE @key WITH { "firstName": TRIM(@firstName), "lastName": TRIM(@lastName), "email": TRIM(@email), "countryCode": TRIM(@countryCode) } IN addresses',
     REMOVE_CONTACT: "REMOVE @_key IN addresses",
 }
 const EMAIL_VALIDATION_REGEX = new RegExp(

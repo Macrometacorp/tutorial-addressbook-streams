@@ -143,6 +143,7 @@ const AddressBookTable = () => {
             firstName: contact.firstName,
             lastName: contact.lastName,
             email: contact.email,
+            countryCode: contact.countryCode,
         })
         setAppConfig((prev) => {
             return {
@@ -182,19 +183,25 @@ const AddressBookTable = () => {
                     <Table className={classes.table}>
                         <TableHead>
                             <TableRow sx={{ backgroundColor: "#f4f6f8" }}>
-                                <TableCell width={"12%"} className={classes.tableCell} align="left">
+                                <TableCell width={"8%"} className={classes.tableCell} align="left">
                                     Key
                                 </TableCell>
-                                <TableCell width={"20%"} className={classes.tableCell} align="left">
+                                <TableCell width={"17%"} className={classes.tableCell} align="left">
                                     First Name
                                 </TableCell>
-                                <TableCell width={"20%"} className={classes.tableCell} align="left">
+                                <TableCell width={"18%"} className={classes.tableCell} align="left">
                                     Last Name
                                 </TableCell>
-                                <TableCell width={"26%"} className={classes.tableCell} align="left">
+                                <TableCell width={"20%"} className={classes.tableCell} align="left">
                                     Email
                                 </TableCell>
-                                <TableCell width={"22%"} className={classes.tableCell} align="left">
+                                <TableCell width={"10%"} className={classes.tableCell} align="left">
+                                    Country
+                                </TableCell>
+                                <TableCell width={"10%"} className={classes.tableCell} align="left">
+                                    GDPR
+                                </TableCell>
+                                <TableCell width={"17%"} className={classes.tableCell} align="left">
                                     Actions
                                 </TableCell>
                             </TableRow>
@@ -216,6 +223,10 @@ const AddressBookTable = () => {
                                             <TableCell align="left">{_data.firstName}</TableCell>
                                             <TableCell align="left">{_data.lastName}</TableCell>
                                             <TableCell align="left">{_data.email}</TableCell>
+                                            <TableCell align="left">{_data.countryCode}</TableCell>
+                                            <TableCell align="left">
+                                                {_data.gdpr ? "Applicable" : "Not Applicable"}
+                                            </TableCell>
                                             <TableCell align="left">
                                                 <Button
                                                     sx={{ mr: "2rem" }}
@@ -242,9 +253,11 @@ const AddressBookTable = () => {
                                 <TableRow>
                                     <TableCell></TableCell>
                                     <TableCell></TableCell>
+                                    <TableCell></TableCell>
                                     <TableCell sx={{ fontSize: "1rem", fontWeight: "600" }}>
                                         No contacts available
                                     </TableCell>
+                                    <TableCell></TableCell>
                                     <TableCell></TableCell>
                                     <TableCell></TableCell>
                                 </TableRow>
